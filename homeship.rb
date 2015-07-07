@@ -12,6 +12,7 @@ open(path) do |f|
     travis = YAML.load(f)
     dockerfile += "from #{travis['build_image']}\n"
     dockerfile += "ENV SHIPPABLE TRUE\n"
+    dockerfile += "ENV HOMESHIP TRUE\n"
     dockerfile += "run groupadd homeship\n"
     dockerfile += "run useradd --home /home/homeship homeship -g homeship\n"
     dockerfile += "run sudo usermod -a -G sudo homeship\n"
